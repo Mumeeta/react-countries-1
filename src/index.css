@@ -1,3 +1,6 @@
+body {  background-color: #0b064b;
+  color: white; } 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +13,46 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.loading {
+  left: 50%;
+  top: 55%;
+  font-size: 36px;
+  font-family: serif;
+  font-weight: bold;
+  letter-spacing: 4.4px;
+  text-transform: capitalize;
+  position: absolute;
+  overflow: hidden;
+  transform: translate(-50%, -60%);
+  
+  &:before {
+      color: #5ac57c;
+      content: attr(data-loading-text);
+  }
+  
+  &:after {
+      top: 0;
+      left: 0;
+      width: 0;
+      opacity: 1;
+      color: #444;
+      overflow: hidden;
+      position: absolute;
+      content: attr(data-loading-text);
+      animation: loading 5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { 
+      width: 0; 
+    }
+    100% {
+      width: 100%; 
+    }
+  }
+}
+.Main{
+  text-align: center;
+  padding: 30px 30px;
 }
