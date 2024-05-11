@@ -4,22 +4,34 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, registerWithEmailAndPassword } from "../auth/firebase";
 
+const isValidEmail = (email) => {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [name, setName] = useState('')
-    const [user, loading, error] = useAuthState(auth);
+    const [name, setName] = useState('');
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     const register = () => {
-        if(!name) alert("Please enter name")
-        registerWithEmailAndPassword(name, email, password)
+        if (!name) {
+            alert("Please enter your name");
+        } else if (!isValidEmail(email)) {
+            alert("Please enter a valid email address");
+        } else {
+            registerWithEmailAndPassword(name, email, password);
+        }
     }
 
     useEffect(() => {
-        if (loading) return;
-        if (user) navigate('/countries')
-    },[user, loading])
+        if (!loading && user) {
+            navigate('/countries');
+        }
+    }, [loading, user, navigate]);
 
     return (
         <div>
@@ -47,8 +59,7 @@ const Register = () => {
                 <Link to="/login">Login</Link>
             </div>
         </div>
-    )
-
+    );
 }
 
 export default Register;

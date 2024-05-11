@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, getFirestore, deleteDoc, query, where, getDocs } from 'firebase/firestore';
 //import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,39 +19,71 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
-const auth = getAuth(app)
-const db = getFirestore(app)
-
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 const loginWithEmailAndPassword = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.log(err)
-    alert(err.message)
+    console.log(err);
+    alert(err.message);
   }
-}
+};
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, email, password)
-    const user = res.user
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
       name,
       authProvider: 'local',
       email,
-    })
+    });
   } catch (err) {
-    console.log(err)
-    alert(err.message)
+    console.log(err);
+    alert(err.message);
   }
-}
+};
 
 const logout = () => {
-  signOut(auth)
-}
+  signOut(auth);
+};
 
-export { auth, db, loginWithEmailAndPassword, logout, registerWithEmailAndPassword };
+const addFavouriteToFirebase = async (uid, name) => {
+  try {
+    await addDoc(collection(db, `users/${uid}/favourites`), { name });
+    console.log("Favourite added to Firebase database");
+  } catch (err) {
+    console.error("Error adding favourite to Firebase database: ", err);
+  }
+};
+
+const removeFavouriteFromFirebase = async (uid, name) => {
+  try {
+    if (!name) {
+      console.error("Error removing favourite from Firebase database: name parameter is undefined");
+      return;
+    }
+    const q = query(collection(db, `users/${uid}/favourites`), where("name", "==", name));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+      console.log("Favourite removed from Firebase database");
+    });
+  } catch (err) {
+    console.error("Error removing favourite from Firebase database: ", err);
+  }
+};
+
+export {
+  auth,
+  db,
+  loginWithEmailAndPassword,
+  logout,
+  registerWithEmailAndPassword,
+  addFavouriteToFirebase,
+  removeFavouriteFromFirebase
+};

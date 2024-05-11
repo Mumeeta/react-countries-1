@@ -27,20 +27,21 @@ const Favourites = () => {
 
     if (loading) {
         return (
-            <Col className="text-center m-5">
-        <Spinner
-          animation="border"
-          role="status"
-          className="center"
-          variant="info"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </Col>
+          <Col className="text-center m-5">
+            <Spinner
+              animation="border"
+              role="status"
+              className="center"
+              variant="info"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </Col>
         )
     }
 
-    return (<Container fluid>
+    return (
+      <Container fluid>
         <Row>
           <Col className="mt-5 d-flex justify-content-center">
             <Form>

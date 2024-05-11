@@ -28,12 +28,18 @@ const Layout = () => {
                 <LinkContainer to="/favourites">
                   <Nav.Link>Favourites</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                  <Nav.Link>Login</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/register">
-                  <Nav.Link>Register</Nav.Link>
-                </LinkContainer>
+                {user ? (
+                  <Navbar.Text className="me-2">
+                  <i className="bi-person-circle"></i> {user.displayName} {user.email}
+                </Navbar.Text>
+                ) : (
+                  <><LinkContainer to="/login">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer><LinkContainer to="/register">
+                      <Nav.Link>Register</Nav.Link>
+                    </LinkContainer></>
+                  
+                )}
               </Nav>
             </Navbar.Collapse>
             { user ? (
