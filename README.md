@@ -38,6 +38,5 @@ git clone https://github.com/Mumeeta/react-countries-1
 <img width="605" alt="Screenshot 2024-05-11 at 23 44 17" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/9d8faf22-34f7-4400-a915-e3f1145f8e7d">
 <img width="1357" alt="Screenshot 2024-05-11 at 23 45 24" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/fb9aaa47-1103-4a1f-acb0-a58940a69086">
 
-<img width="1336" alt="Screenshot 2024-05-11 at 23 44 43" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/0febd883-fc9a-46fc-91e5-55460ace78f8">
 
 Install dependencies with `npm install` and run app in development mode with `npm start`.
