@@ -31,7 +31,9 @@ Additional libraries:
 Clone repository
 ```
 git clone https://github.com/Mumeeta/react-countries-1
-```<img width="1348" alt="Screenshot 2024-05-11 at 23 45 43" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/abc6fd79-0cdb-4041-a15f-6e62b9ae3993">
+## Screenshots
+```
+<img width="1348" alt="Screenshot 2024-05-11 at 23 45 43" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/abc6fd79-0cdb-4041-a15f-6e62b9ae3993">
 
 <img width="605" alt="Screenshot 2024-05-11 at 23 44 17" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/9d8faf22-34f7-4400-a915-e3f1145f8e7d">
 <img width="1357" alt="Screenshot 2024-05-11 at 23 45 24" src="https://github.com/Mumeeta/react-countries-1/assets/45231106/fb9aaa47-1103-4a1f-acb0-a58940a69086">
